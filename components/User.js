@@ -14,7 +14,7 @@ query GetUser{
   }
 }
 `;
-  const { loading, error, data } = useQuery(getUser);
+  const { loading, error, data } = useQuery(getUser,{ pollInterval: 500 });
   console.log(data);
 
   if (loading) {

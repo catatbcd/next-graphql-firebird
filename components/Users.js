@@ -13,7 +13,7 @@ query GetUsers {
 }
 `;
 export default function Users(){
-    const {loading, error, data } = useQuery(getUsers);
+    const {loading, error, data } = useQuery(getUsers,{ pollInterval: 500 });
     async function deleteUser(id) {
       try {
         const result = await client.mutate({
