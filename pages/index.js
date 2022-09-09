@@ -26,9 +26,9 @@ export default function Home() {
           browser requests the app, the page loads, then React requests the data
           and presents it to the user.
         </p>
-        <div className={styles.card}>
+       
           <FormAdd />
-        </div>
+        
         <h2>Users</h2>
         <ClientOnly>
           <Users />

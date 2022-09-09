@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { editUser } from "../lib/graphqlMutations";
 import { getUser } from "../lib/graphqlQueries";

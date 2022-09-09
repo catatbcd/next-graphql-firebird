@@ -2,8 +2,10 @@ import { useQuery, gql } from "@apollo/client";
 import Image from "next/image";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import classes from "../styles/button.module.css"
 import FormEdit from "./formEdit";
 import { getUser } from "../lib/graphqlQueries";
+import Link from "next/link";
 export default function Users(props) {
   const { loading, error, data } = useQuery(getUser, {
     variables: { id: props.id },
@@ -43,8 +45,12 @@ export default function Users(props) {
         <title>{user.LOGIN}</title>
       </Head>
       <main className={styles.main}>
-        <section>
-          {" "}
+        <Link href={'/'}>
+          <button className={classes.glow_on_hover} type="button">Back</button>
+              </Link>
+        <section className={styles.grid}>
+          
+         
           <div className={styles.card}>
             <h2 className={styles.title}>
               {user.LOGIN} - ID: {user.ID}
@@ -57,9 +63,9 @@ export default function Users(props) {
               alt={user.LOGIN}
             />
           </div>
-          <div className={styles.card}>
+         
             <FormEdit user={user} />
-          </div>
+         
         </section>
       </main>
     </div>
