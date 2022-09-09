@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { editUser } from "../lib/graphqlMutations";
 import { getUser } from "../lib/graphqlQueries";
 import classes from "../styles/form.module.css";
+import useForm from "../utility/useForm";
 export default function FormEdit(props) {
   const user = props.user;
   const [EditUser, { data1, loading, error }] = useMutation(editUser, {
@@ -14,26 +15,19 @@ export default function FormEdit(props) {
       "GetUser", // Query name
     ],
   });
-
-  const [dataForm, setDataForm] = useState({
-    ID: user.ID,
+  const { inputs, handleChange, clearForm } = useForm({
     LOGIN: user.LOGIN,
     AVATAR_URL: user.AVATAR_URL,
-  });
-  const handleInputChange = (event) => {
-    setDataForm({
-      ...dataForm,
-      [event.target.name]: event.target.value,
-    });
-  };
+  })
+  
 
   async function sendData(event) {
     event.preventDefault();
     EditUser({
       variables: {
-        id: dataForm.ID,
-        login: dataForm.LOGIN,
-        avatarUrl: dataForm.AVATAR_URL,
+        id: user.ID,
+        login: inputs.LOGIN,
+        avatarUrl: inputs.AVATAR_URL,
       },
     });
   }
@@ -46,8 +40,8 @@ export default function FormEdit(props) {
           placeholder="Name"
           type={"text"}
           name="LOGIN"
-          onChange={handleInputChange}
-          defaultValue={user.LOGIN}
+          value={inputs.LOGIN}
+          onChange={handleChange}
         ></input>
       </div>
 
@@ -57,8 +51,8 @@ export default function FormEdit(props) {
           placeholder="Avatar"
           type={"text"}
           name="AVATAR_URL"
-          onChange={handleInputChange}
-          defaultValue={user.AVATAR_URL}
+          value={inputs.AVATAR_URL}
+          onChange={handleChange}
         ></input>
       </div>
       <br></br>
