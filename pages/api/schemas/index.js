@@ -1,5 +1,3 @@
 import { typeUser } from "../../../models/user/schemas";
 
-export const typeDefs = [
-  typeUser
-]
+export const typeDefs = [typeUser];

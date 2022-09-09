@@ -1,12 +1,11 @@
-import Head from 'next/head'
+import Head from "next/head";
 import Image from "next/image";
-import ClientOnly from '../components/ClientOnly';
-import FormAdd from '../components/formAdd';
-import Users from '../components/Users';
-import styles from '../styles/Home.module.css'
+import ClientOnly from "../components/ClientOnly";
+import FormAdd from "../components/formAdd";
+import Users from "../components/Users";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
-  
   return (
     <div className={styles.container}>
       <Head>
@@ -17,22 +16,23 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-         Next.js example with graphql and firebird
+          Next.js example with graphql and firebird
         </h1>
         <p className={styles.description}>
-        <strong> Using Apollo Client for client-side data</strong>
-        <br></br><br></br>
-Client-side rendering is what we typically do in React apps. The browser requests the app, the page loads, then React requests the data and presents it to the user.
+          <strong> Using Apollo Client for client-side data</strong>
+          <br></br>
+          <br></br>
+          Client-side rendering is what we typically do in React apps. The
+          browser requests the app, the page loads, then React requests the data
+          and presents it to the user.
         </p>
         <div className={styles.card}>
           <FormAdd />
         </div>
         <h2>Users</h2>
-<ClientOnly>
-  <Users />
-</ClientOnly>
-      
-       
+        <ClientOnly>
+          <Users />
+        </ClientOnly>
       </main>
 
       <footer className={styles.footer}>
@@ -41,12 +41,12 @@ Client-side rendering is what we typically do in React apps. The browser request
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
+  );
 }

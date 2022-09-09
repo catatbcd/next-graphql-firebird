@@ -14,7 +14,7 @@ export const resolverUser = {
           }
           // db = DATABASE
           var sql = `SELECT * FROM USERS`;
-     
+
           db.query(sql, function (err, result) {
             if (err) {
               reject({
@@ -65,8 +65,8 @@ export const resolverUser = {
       });
     },
   },
-  Mutation:{
-    createUser:async(_,args) => {
+  Mutation: {
+    createUser: async (_, args) => {
       return new Promise((resolve, reject) => {
         pool.get(function (err, db) {
           if (err) {
@@ -89,12 +89,12 @@ export const resolverUser = {
             }
             // IMPORTANT: release the pool connection
             db.detach();
-            const user ={
-              ID:result.ID,
-              LOGIN:args.LOGIN,
-              AVATAR_URL:args.AVATAR_URL
-            }
-            console.log(result.ID)
+            const user = {
+              ID: result.ID,
+              LOGIN: args.LOGIN,
+              AVATAR_URL: args.AVATAR_URL,
+            };
+
             resolve(user);
           });
         });
@@ -102,7 +102,7 @@ export const resolverUser = {
         pool.destroy();
       });
     },
-    editUser:async(_,args) => {
+    editUser: async (_, args) => {
       return new Promise((resolve, reject) => {
         pool.get(function (err, db) {
           if (err) {
@@ -113,7 +113,7 @@ export const resolverUser = {
             });
           }
           // db = DATABASE
-          var sql =  `UPDATE USERS SET LOGIN='${args.LOGIN}', AVATAR_URL='${args.AVATAR_URL}' WHERE ID ='${args.ID}'`;
+          var sql = `UPDATE USERS SET LOGIN='${args.LOGIN}', AVATAR_URL='${args.AVATAR_URL}' WHERE ID ='${args.ID}'`;
 
           db.query(sql, function (err, result) {
             if (err) {
@@ -125,12 +125,12 @@ export const resolverUser = {
             }
             // IMPORTANT: release the pool connection
             db.detach();
-            
-            const user ={
-              ID:args.ID,
-              LOGIN:args.LOGIN,
-              AVATAR_URL:args.AVATAR_URL
-            }
+
+            const user = {
+              ID: args.ID,
+              LOGIN: args.LOGIN,
+              AVATAR_URL: args.AVATAR_URL,
+            };
             resolve(user);
           });
         });
@@ -138,7 +138,7 @@ export const resolverUser = {
         pool.destroy();
       });
     },
-    deleteUser:async(_,args) => {
+    deleteUser: async (_, args) => {
       return new Promise((resolve, reject) => {
         pool.get(function (err, db) {
           if (err) {
@@ -149,7 +149,7 @@ export const resolverUser = {
             });
           }
           // db = DATABASE
-          var sql =  `DELETE FROM USERS WHERE ID ='${args.ID}'`;
+          var sql = `DELETE FROM USERS WHERE ID ='${args.ID}'`;
 
           db.query(sql, function (err, result) {
             if (err) {
@@ -168,6 +168,6 @@ export const resolverUser = {
         // Destroy pool
         pool.destroy();
       });
-    }
-  }
+    },
+  },
 };

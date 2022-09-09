@@ -26,8 +26,7 @@ const findUser = async (email) => {
       }
       // db = DATABASE
       var sql = `SELECT * FROM CLIENTE WHERE CLI_EMAIL = '${email}'`;
-      //console.log(sql)
-
+      
       db.query(sql, function (err, result) {
         if (err) {
           reject({
@@ -60,7 +59,7 @@ async function createUser(email) {
       }
       // db = DATABASE
       var sql = `INSERT INTO  CLIENTE (CLI_EMAIL) VALUES('${email}') RETURNING CLI_CODIGO`;
-      //console.log(sql)
+      
       db.query(sql, function (err, result) {
         if (err) {
           reject({ ok: false, error: "Could not insert data", info: err });
